@@ -1,0 +1,35 @@
+﻿{
+   "ContextClassName": "Testapp1Context",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "DoNotCombineNamespace": false,
+   "IdReplace": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": "Data",
+   "OutputPath": "Data",
+   "ProjectRootNamespace": "Infrastructure",
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Acoounts]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[OpearationsLogs]"
+      },
+      {
+         "HasPrimaryKey": true,
+         "Name": "[dbo].[Operations]"
+      }
+   ],
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseSpatial": false
+}

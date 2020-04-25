@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.Data
+namespace Core.Entities
 {
     public partial class Acoount
     {

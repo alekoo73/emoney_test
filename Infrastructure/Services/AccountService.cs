@@ -14,9 +14,9 @@ namespace Core.Services
     public class AccountService : IAccountService
     {
         private readonly IUnitOfWork _uow;
-        public readonly IAppLogger<AccountService> _appLogger;
+        public readonly IAppLogger _appLogger;
 
-        public AccountService(IUnitOfWork uow,IAppLogger<AccountService> appLogger)
+        public AccountService(IUnitOfWork uow,IAppLogger appLogger)
         {
             this._uow = uow;
             this._appLogger = appLogger;
@@ -27,9 +27,14 @@ namespace Core.Services
            return await ((IAccountRepository)_uow.Repository<IAccountRepository, Account>()).FindAccount(idnumber);
         }
 
-        public dynamic GetReportData()
+        public async Task<dynamic> GetReportData()
         {
-            throw new NotImplementedException();
+            return await ((IAccountRepository)_uow.Repository<IAccountRepository, Account>()).GetReportData();
+        }
+
+        public async Task<TransferResponse> Transfer(TransferRequest request)
+        {
+            return await((IAccountRepository)_uow.Repository<IAccountRepository, Account>()).Transfer(request,_appLogger);
         }
     }
 }

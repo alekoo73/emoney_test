@@ -1,4 +1,5 @@
-﻿using Infrastructure.Classes;
+﻿using Core.Entities;
+using Infrastructure.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

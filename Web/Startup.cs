@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Infrastructure.Classes;
-using Infrastructure.Interfaces;
 using Infrastructure.Logging;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,6 +18,13 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using AutoMapper;
+using Core.Entities;
+using Core.Services;
+using Infrastructure.Repositories;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Web.Middleware;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Web
 {
@@ -35,7 +41,10 @@ namespace Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
@@ -56,15 +65,21 @@ namespace Web
               ValidateAudience = false
           };
       });
-
+            services.AddDbContext<Testapp1Context>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("Connection")));
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped(typeof(IAppLogger), typeof(LoggerAdapter));
             services.AddAutoMapper(typeof(Startup).Assembly, typeof(User).Assembly);
+            
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IAppLogger logger)
         {
             if (env.IsDevelopment())
             {
@@ -78,6 +93,8 @@ namespace Web
 
             
             app.UseRouting();
+
+            app.ConfigureExceptionHandler<Program>(logger);
 
             app.UseAuthentication();
             app.UseAuthorization();

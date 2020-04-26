@@ -9,6 +9,7 @@ namespace Core.Interfaces
     public interface IAccountService
     {
         public Task<FindAccountResponse> FindAccount(string idnumber);
-        public dynamic GetReportData();
+        public Task<TransferResponse> Transfer(TransferRequest request);
+        public Task<dynamic> GetReportData();
     }
 }

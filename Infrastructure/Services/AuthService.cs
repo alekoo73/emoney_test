@@ -9,7 +9,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using Infrastructure.Helpers;
-using Infrastructure.Interfaces;
+using Core.Entities;
+using Core.Interfaces;
 
 namespace Infrastructure.Services
 {

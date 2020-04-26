@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Infrastructure.Classes;
 
-namespace Infrastructure.Interfaces
+
+namespace Core.Interfaces
 {
     public interface IAuthService
     {

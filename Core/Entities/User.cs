@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.Classes
+namespace Core.Entities
 {
     public class User
     {

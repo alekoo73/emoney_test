@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Infrastructure.Classes
+namespace Core.Entities
 {
     public static class Role
     {

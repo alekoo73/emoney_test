@@ -10,7 +10,9 @@ namespace Core.Interfaces
     public interface IAccountRepository : IGenericRepository<Account>
     {
         public Task<FindAccountResponse> FindAccount(string number);
-        public dynamic GetReportData();
+
+        public Task<TransferResponse> Transfer(TransferRequest request,IAppLogger logger);
+        public Task<dynamic> GetReportData();
 
     }
 }

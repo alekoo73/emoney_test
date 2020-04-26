@@ -11,24 +11,11 @@ namespace Core.Interfaces
 
     public interface IGenericRepository<T> where T : class
     {
-        IQueryable<T> Query();
-
-        ICollection<T> GetAll();
-
         Task<ICollection<T>> GetAllAsync(QueryParameters queryParameters);
-
 
         Task<T> GetByIdAsync(int id);
 
-        T GetByUniqueId(string id);
-
-        Task<T> GetByUniqueIdAsync(object id, bool detach = false);
-
-        T Find(Expression<Func<T, bool>> match);
-
         Task<T> FindAsync(Expression<Func<T, bool>> match);
-
-        ICollection<T> FindAll(Expression<Func<T, bool>> match);
 
         Task<ICollection<T>> FindAllAsync(QueryParameters queryParameters, Expression<Func<T, bool>> match);
 

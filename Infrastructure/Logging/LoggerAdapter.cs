@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Infrastructure.Logging
 {
-    public class LoggerAdapter<T> : IAppLogger<T>
+    public class LoggerAdapter : IAppLogger
     {
-        private readonly ILogger<T> _logger;
+        private readonly ILogger _logger;
         public LoggerAdapter(ILoggerFactory loggerFactory)
         {
-            _logger = loggerFactory.CreateLogger<T>();
+            _logger = loggerFactory.CreateLogger("App inner log");
         }
 
         public void LogWarning(string message, params object[] args)
@@ -22,6 +22,11 @@ namespace Infrastructure.Logging
         public void LogInformation(string message, params object[] args)
         {
             _logger.LogInformation(message, args);
+        }
+
+        public void LogError(string message, params object[] args)
+        {
+            _logger.LogError(message, args);
         }
     }
 }

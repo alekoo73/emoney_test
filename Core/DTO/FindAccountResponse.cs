@@ -10,7 +10,7 @@ namespace Core.DTO
     public class FindAccountResponse
     {
         private BasicStatuses _basicStatus;
-        public BasicStatuses BasicStatus
+        public BasicStatuses Status
         {
             get
             {

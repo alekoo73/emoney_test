@@ -17,7 +17,7 @@ namespace Infrastructure.Data
         {
         }
 
-        public virtual DbSet<Acoount> Acoounts { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<OpearationsLog> OpearationsLogs { get; set; }
         public virtual DbSet<Operation> Operations { get; set; }
 
@@ -32,7 +32,7 @@ namespace Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Acoount>(entity =>
+            modelBuilder.Entity<Account>(entity =>
             {
                 entity.HasKey(e => e.AccountId);
 
@@ -67,7 +67,7 @@ namespace Infrastructure.Data
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.OpearationsLogs)
                     .HasForeignKey(d => d.AccountId)
-                    .HasConstraintName("FK_OpearationsLogs_Acoounts");
+                    .HasConstraintName("FK_OpearationsLogs_Accounts");
             });
 
             modelBuilder.Entity<Operation>(entity =>
@@ -89,7 +89,7 @@ namespace Infrastructure.Data
                     .WithMany(p => p.Operations)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Operations_Acoounts");
+                    .HasConstraintName("FK_Operations_Accounts");
             });
 
             OnModelCreatingPartial(modelBuilder);

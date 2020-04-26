@@ -14,6 +14,6 @@ namespace Core.Entities
         public string Response { get; set; }
         public byte Status { get; set; }
 
-        public virtual Acoount Account { get; set; }
+        public virtual Account Account { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Core.Entities
 {
-    public partial class Acoount
+    public partial class Account
     {
-        public Acoount()
+        public Account()
         {
             OpearationsLogs = new HashSet<OpearationsLog>();
             Operations = new HashSet<Operation>();
@@ -15,7 +15,8 @@ namespace Core.Entities
         public string AccountId { get; set; }
         public decimal Balance { get; set; }
         public string Owner { get; set; }
-        public decimal Overdraft { get; set; }
+        public decimal Overdraft { get; set; }        
+        public byte Status { get; set; }
 
         public virtual ICollection<OpearationsLog> OpearationsLogs { get; set; }
         public virtual ICollection<Operation> Operations { get; set; }

@@ -14,7 +14,7 @@
    "Tables": [
       {
          "HasPrimaryKey": true,
-         "Name": "[dbo].[Acoounts]"
+         "Name": "[dbo].[Accounts]"
       },
       {
          "HasPrimaryKey": true,

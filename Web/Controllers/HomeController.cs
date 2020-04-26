@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Web.Models;
 using Infrastructure.Interfaces;
-
+using Core.Interfaces;
 
 namespace Web.Controllers
 {
@@ -19,7 +19,8 @@ namespace Web.Controllers
     {
        
         private readonly ILogger<HomeController> _logger;
-        private IAuthService _authService;
+        private readonly IAuthService _authService;
+        private readonly IAccountService accountService;
 
         public HomeController(ILogger<HomeController> logger, IAuthService authService)
         {
@@ -45,7 +46,7 @@ namespace Web.Controllers
         public async Task<IActionResult> FindAccountAsync(string id)
         {
           
-            return Ok("passed");
+            return Ok();
 
         }
 

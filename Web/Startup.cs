@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using AutoMapper;
 
 namespace Web
 {
@@ -58,7 +59,7 @@ namespace Web
 
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
-
+            services.AddAutoMapper(typeof(Startup).Assembly, typeof(User).Assembly);
 
         }
 

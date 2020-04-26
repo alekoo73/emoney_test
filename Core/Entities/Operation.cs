@@ -11,6 +11,6 @@ namespace Core.Entities
         public decimal OperationAmount { get; set; }
         public byte OperationType { get; set; }
 
-        public virtual Acoount Account { get; set; }
+        public virtual Account Account { get; set; }
     }
 }
